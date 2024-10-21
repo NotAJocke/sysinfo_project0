@@ -5,15 +5,11 @@
 
 #include <cmocka.h>
 
-static void test_true(void **state) {
-  (void)state;
-
-  assert_true(1);
-}
+extern void test_malloc_basic(void **state);
 
 int main() {
   const struct CMUnitTest tests[] = {
-      cmocka_unit_test(test_true),
+      cmocka_unit_test(test_malloc_basic),
   };
   return cmocka_run_group_tests(tests, NULL, NULL);
 }
