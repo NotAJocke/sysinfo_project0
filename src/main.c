@@ -1,4 +1,5 @@
 #include "my_memory.h"
+#include <limits.h>
 #include <stdint.h>
 #include <stdio.h>
 
@@ -7,41 +8,47 @@ void printb(char *name, bool value) {
 }
 
 int main() {
-  init();
+  // init();
 
   printf("Initial memory state:\n");
   print_state(50);
   printf("\n\n");
 
-  int *five = my_malloc(sizeof(int));
+  int *n1 = my_malloc(sizeof(int));
 
-  printf("memory after malloc int:\n");
+  printf("After malloc:\n");
+
   print_state(50);
   printf("\n\n");
 
-  *five = 5000;
+  *n1 = INT_MAX;
 
-  printf("memory after dereferencing and adding 5000:\n");
+  printf("Adding INT_MAX:\n");
   print_state(50);
   printf("\n\n");
 
-  printf("Value stored in memory:\n");
-  printf("%d\n", *five);
-  printf("\n\n");
+  int *n2 = my_malloc(sizeof(int));
 
-  printf("After the free\n");
-  my_free(five);
+  printf("After malloc 2:\n");
   print_state(50);
   printf("\n\n");
 
-  five = my_malloc(sizeof(uint8_t));
-  printf("memory after malloc uint8:\n");
+  *n2 = 2;
+
+  printf("Adding 2:\n");
   print_state(50);
   printf("\n\n");
 
-  *five = 600;
+  my_free(n1);
 
-  printf("memory after dereferencing and adding 600:\n");
+  printf("After free n1:\n");
+  print_state(50);
+  printf("\n\n");
+
+  int *n3 = my_malloc(sizeof(int));
+  *n3 = 280;
+
+  printf("After malloc 3 && insert 280 :\n");
   print_state(50);
   printf("\n\n");
 
